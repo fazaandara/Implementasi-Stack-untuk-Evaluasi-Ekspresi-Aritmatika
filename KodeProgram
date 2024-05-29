@@ -79,6 +79,8 @@ vector<string>convertTolnfix(string input){
 }
 
 
+
+
 #include <bits/stdc++.h>
 using namespace std;
 bool check(char ch, vector<char> range);
@@ -211,16 +213,21 @@ vector<string> convertToPostfix(vector<string> infix){
 }
 
 
+
+
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
-bool check(char ch,vector<char> range);
+bool check(char ch, vector<char> range);
 
 
 vector<string> convertToInfix(string input);
 
 
-string removewhitspace(string str);
+string removeWhitespace(string str);
 
 
 int checkPrecedence(char op);
@@ -229,171 +236,78 @@ int checkPrecedence(char op);
 vector<string> convertToPostfix(vector<string> infix);
 
 
-double doOperation(double a, double b, strint op);
+double doOperation(double a, double b, string op);
 
 
 double evaluateOperation(vector<string> postfix);
 
 int main(){
-	string input;
-	getline(cin,input);
-	
-	vector<string> infix = convertToInfix(removewhitspace(input));
-	
-	vector<string> postfix = convertToPostfix(infix);
-	
-	cout << evaluateOperation(postfix) << endl;
-	
-	return 0;
+    string input;
+    getline(cin,input);
+
+    vector<string> infix = convertToInfix(removeWhitespace(input));
+
+    vector<string> postfix = convertToPostfix(infix);
+
+    cout << evaluateOperation(postfix) << endl;
+
+    return 0;
 }
 
 bool check(char ch, vector<char> range){
-	vector<char>::iterator it;
-	it = find(range.begin(),ch);
-	
-	return it-range.begin() <(long int) range.size();
+    vector<char>::iterator it;
+    it = find(range.begin(),range.end(),ch);
+
+    return it-range.begin() < (long int) range.size();
 }
 
 bool checkString(string str, vector<string> range){
-	vector<string>::iterator it;
-	it - find(range.begin(),range.end(),str);
-	
-	
-	return it-range.begin() < (long int) range.size();
+    vector<string>::iterator it;
+    it = find(range.begin(),range.end(),str);
+
+    
+    return it-range.begin() < (long int) range.size();
 }
 
-string removewhitspace(string str){
-	
-	vector<char> op = {'+','*','/','-','%','(',')'};
-	
-	string::iterator i = str.begin();
-	string result;
-	
-	while(i= str.end()){
-		
-		if(isdigit(*i) || check(*i,op)){
-			result.push_back(*i);
-		}
-		
-		i++;
-	}
-	
-	return result;
+string removeWhitespace(string str){
+    
+    vector<char> op = {'+','*','/','-','%','(',')'};
+
+    string::iterator i = str.begin();
+    string result;
+
+    while(i != str.end()){
+       
+        if(isdigit(*i) || check(*i,op)){
+            result.push_back(*i);
+        }
+
+        i++; // Counter
+    }
+
+    return result;
 }
 
 vector<string> convertToInfix(string input){
-	
-	vector<char> op = {'+','*','/','%'};
-	vector<char> kurung = {'(',')'};
-	
-	vector<string> infix;
-	string temp;
-	string::iterator i = input.begin();
-	
-	
-	while(i != input.end()){
-		
-		if(isdigit(*i)){
-			
-			temp.push_back(*i);
-			
-			if(isdigit(*(i+1))){
-				infix.push_back(temp);
-				temp.clear();
-			}
-			return 0;
-		}
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    vector<char> op = {'+','*','/','%'};
+    vector<char> kurung = {'(',')'};
+
+    vector<string> infix;
+    string temp;
+    string::iterator i = input.begin();
+
+   
+    while(i != input.end()){
+        
+        if(isdigit(*i)){
+            
+            temp.push_back(*i);
+            
+            if(!isdigit(*(i+1))){
+                infix.push_back(temp);
+                temp.clear();
+            }
        
         }else if(check(*i,op) || check(*i,kurung)){
            
@@ -522,3 +436,4 @@ double doOperation(double a, double b, string op){
     }
     return result;
 }
+	SEKIAN DAN TERIMAKASIH
